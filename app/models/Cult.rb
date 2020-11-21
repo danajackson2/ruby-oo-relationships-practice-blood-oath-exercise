@@ -4,7 +4,11 @@ class Cult
     
     @@all = []
 
-    def initialize
+    def initialize(name, location, founding_year, slogan)
+        @name = name
+        @locaton = location
+        @founding_year - founding_year
+        @slogan = slogan
         @@all << self
     end
 
@@ -59,5 +63,5 @@ class Cult
         self.all.each {|cult| hash[cult.location] ? hash[cult.location] += 1 : hash[cult.location] = 1} 
         hash.max_by{|k, v| v}[0]
     end
-    
+
 end
