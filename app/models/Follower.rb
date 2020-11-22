@@ -20,7 +20,11 @@ class Follower
     end
 
     def join_cult(cult)
-        BloodOath.new(cult, self)
+        if cult.minimum_age <= self.age
+            BloodOath.new(cult, self)
+        else
+            "Sorry #{@name} you are too young! Keep growing."
+        end
     end
 
     def self.of_a_certain_age(age)
@@ -37,5 +41,9 @@ class Follower
 
     def self.top_ten
         @@all.sort_by{|follower| follower.cults.length}.reverse[0..10]
+    end
+
+    def fellow_cult_members
+        Follower.all.select{|fol| fol.cults & self.cults != [] && fol != self}
     end
 end
